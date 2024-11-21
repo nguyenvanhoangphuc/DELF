@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: delf
+Version: 2.0
+Summary: DELF (DEep Local Features)
+Requires-Dist: absl-py>=0.7.1
+Requires-Dist: protobuf>=3.8.0
+Requires-Dist: pandas>=0.24.2
+Requires-Dist: numpy>=1.16.1
+Requires-Dist: scipy>=1.2.2
+Requires-Dist: tensorflow>=2.2.0
+Requires-Dist: tf_slim>=1.1
+Requires-Dist: tensorflow_probability>=0.9.0
