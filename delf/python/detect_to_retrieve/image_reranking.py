@@ -153,13 +153,21 @@ def MatchFeatures(query_locations,
     return 0, b''
 
   # Perform geometric verification using RANSAC.
-  _, inliers = measure.ransac(
-      (index_image_locations_to_use, query_locations_to_use),
-      transform.AffineTransform,
-      min_samples=_MIN_RANSAC_SAMPLES,
-      residual_threshold=ransac_residual_threshold,
-      max_trials=_NUM_RANSAC_TRIALS,
-      random_state=ransac_seed)
+  try: 
+    _, inliers = measure.ransac(
+        (index_image_locations_to_use, query_locations_to_use),
+        transform.AffineTransform,
+        min_samples=_MIN_RANSAC_SAMPLES,
+        residual_threshold=ransac_residual_threshold,
+        max_trials=_NUM_RANSAC_TRIALS,
+        random_state=ransac_seed)
+  except Exception:
+    _, inliers = measure.ransac(
+        (index_image_locations_to_use, query_locations_to_use),
+        transform.AffineTransform,
+        min_samples=_MIN_RANSAC_SAMPLES,
+        residual_threshold=ransac_residual_threshold,
+        max_trials=_NUM_RANSAC_TRIALS)
   match_viz_bytes = b''
 
   if inliers is None:
