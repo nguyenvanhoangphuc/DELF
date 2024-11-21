@@ -4,4 +4,9 @@ __pycache__
 */__pycache__
 delf/python/delg/parameters/
 delf/python/training/delg/
+delf/python/training/oxford5k_images/
 delf/python/training/gldv2_dataset/
+
+delf/python/training/oxbuild_images.tgz
+delf/python/training/gnd_roxford5k.mat
+delf/python/training/gnd_roxford5k.pkl
