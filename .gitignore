@@ -1,5 +1,7 @@
 .git
 .ipynb_checkpoints
+__pycache__
+*/__pycache__
 delf/python/delg/parameters/
 delf/python/training/delg/
 delf/python/training/gldv2_dataset/
