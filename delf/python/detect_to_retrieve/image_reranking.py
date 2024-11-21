@@ -126,10 +126,15 @@ def MatchFeatures(query_locations,
         if distances[i][0] < descriptor_matching_threshold * distances[i][1]
     ])
   else:
-    _, indices = index_image_tree.query(
-        query_descriptors,
-        distance_upper_bound=descriptor_matching_threshold,
-        n_jobs=-1)
+    try: 
+      _, indices = index_image_tree.query(
+          query_descriptors,
+          distance_upper_bound=descriptor_matching_threshold,
+          n_jobs=-1)
+    except Exception:
+      _, indices = index_image_tree.query(
+          query_descriptors,
+          distance_upper_bound=descriptor_matching_threshold)
 
     # Select feature locations for putative matches.
     query_locations_to_use = np.array([
