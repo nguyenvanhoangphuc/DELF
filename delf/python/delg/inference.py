@@ -64,9 +64,9 @@ def main(image_path, index_features_dir, delf_config_path, top_k=5):
 
 if __name__ == "__main__":
     # Example usage
-    IMAGE_PATH = '/path/to/input_image.png'
+    IMAGE_PATH = '/content/drive/MyDrive/5_NCKH/TCGA-data-DELG/TCGA-Images/TCGA-LGG_TCGA-DU-7007-01A-01-BS1.jp2_patch_3.png'
     INDEX_FEATURES_DIR = '/content/drive/MyDrive/5_NCKH/TCGA-data-DELG/TCGA_features/index'
-    DELF_CONFIG_PATH = '/path/to/delf_config_example.pbtxt'
+    DELF_CONFIG_PATH = 'r50delg_gld_config.pbtxt'
     TOP_K = 5
 
     top_results = main(IMAGE_PATH, INDEX_FEATURES_DIR, DELF_CONFIG_PATH, TOP_K)
