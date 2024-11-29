@@ -70,13 +70,19 @@ def ReadDatasetFile(dataset_file_path):
       for ground_truth_key in _GROUND_TRUTH_KEYS:
           if ground_truth_key in query_ground_truth_raw.dtype.names:
               adjusted_labels = query_ground_truth_raw[ground_truth_key] - 1
-              if (type(adjusted_labels[0][0]) == np.ndarray):
-                query_ground_truth[ground_truth_key] = adjusted_labels[0][0].flatten()
-              else:
+              try:
+                if (type(adjusted_labels[0][0]) == np.ndarray):
+                  query_ground_truth[ground_truth_key] = adjusted_labels[0][0].flatten()
+                else:
+                  query_ground_truth[ground_truth_key] = adjusted_labels.flatten()
+              except Exception as e: 
                 query_ground_truth[ground_truth_key] = adjusted_labels.flatten()
-      if (type(adjusted_labels[0][0]) == np.ndarray):
-        query_ground_truth['bbx'] = query_ground_truth_raw['bbx'][0][0].flatten()
-      else: 
+      try:
+        if (type(adjusted_labels[0][0]) == np.ndarray):
+          query_ground_truth['bbx'] = query_ground_truth_raw['bbx'][0][0].flatten()
+        else: 
+          query_ground_truth['bbx'] = query_ground_truth_raw['bbx'].flatten()
+      except Exception as e: 
         query_ground_truth['bbx'] = query_ground_truth_raw['bbx'].flatten()
       # print(query_ground_truth)
       ground_truth.append(query_ground_truth)
