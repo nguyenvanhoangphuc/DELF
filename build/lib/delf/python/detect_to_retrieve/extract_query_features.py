@@ -46,7 +46,7 @@ cmd_args = None
 
 # Extensions.
 _DELF_EXTENSION = '.delf'
-_IMAGE_EXTENSION = '.jpg'
+_IMAGE_EXTENSION = '.png'
 
 
 def main(argv):
