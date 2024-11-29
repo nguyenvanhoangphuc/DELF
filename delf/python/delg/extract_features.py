@@ -69,7 +69,7 @@ flags.DEFINE_string(
 # Extensions.
 _DELG_GLOBAL_EXTENSION = '.delg_global'
 _DELG_LOCAL_EXTENSION = '.delg_local'
-_IMAGE_EXTENSION = '.jpg'
+_IMAGE_EXTENSION = '.png'
 
 # Pace to report extraction log.
 _STATUS_CHECK_ITERATIONS = 50

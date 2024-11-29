@@ -37,7 +37,7 @@ from delf.python.detect_to_retrieve import boxes_and_features_extraction
 
 cmd_args = None
 
-_IMAGE_EXTENSION = '.jpg'
+_IMAGE_EXTENSION = '.png'
 
 
 def main(argv):
