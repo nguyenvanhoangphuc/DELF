@@ -33,7 +33,7 @@ def calculate_metrics(results, k_values, u_values):
             true_positives = sum(top_k_relevance)
             all_positives = relevance.count(1)
 
-            recall = true_positives / all_positives if all_positives > 0 else 0
+            recall = true_positives / min(all_positives, k) if min(all_positives, k) > 0 else 0
             precision = true_positives / k if k > 0 else 0
             f1 = (
                 2 * precision * recall / (precision + recall)
