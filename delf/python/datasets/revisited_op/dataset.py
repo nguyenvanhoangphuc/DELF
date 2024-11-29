@@ -53,15 +53,33 @@ def ReadDatasetFile(dataset_file_path):
   index_list = [str(im_array[0]) for im_array in np.squeeze(cfg['imlist'])]
   ground_truth_raw = np.squeeze(cfg['gnd'])
   ground_truth = []
-  for query_ground_truth_raw in ground_truth_raw:
-    query_ground_truth = {}
-    for ground_truth_key in _GROUND_TRUTH_KEYS:
-      if ground_truth_key in query_ground_truth_raw.dtype.names:
-        adjusted_labels = query_ground_truth_raw[ground_truth_key] - 1
-        query_ground_truth[ground_truth_key] = adjusted_labels.flatten()
+  #### old ####
+  # for query_ground_truth_raw in ground_truth_raw:
+  #   query_ground_truth = {}
+  #   for ground_truth_key in _GROUND_TRUTH_KEYS:
+  #     if ground_truth_key in query_ground_truth_raw.dtype.names:
+  #       adjusted_labels = query_ground_truth_raw[ground_truth_key] - 1
+  #       query_ground_truth[ground_truth_key] = adjusted_labels.flatten()
 
-    query_ground_truth['bbx'] = np.squeeze(query_ground_truth_raw['bbx'])
-    ground_truth.append(query_ground_truth)
+  #   query_ground_truth['bbx'] = np.squeeze(query_ground_truth_raw['bbx'])
+  #   ground_truth.append(query_ground_truth)
+
+  #### new ####
+  for query_ground_truth_raw in ground_truth_raw:
+      query_ground_truth = {}
+      for ground_truth_key in _GROUND_TRUTH_KEYS:
+          if ground_truth_key in query_ground_truth_raw.dtype.names:
+              adjusted_labels = query_ground_truth_raw[ground_truth_key] - 1
+              if (type(adjusted_labels[0][0]) == np.ndarray):
+                query_ground_truth[ground_truth_key] = adjusted_labels[0][0].flatten()
+              else:
+                query_ground_truth[ground_truth_key] = adjusted_labels.flatten()
+      if (type(adjusted_labels[0][0]) == np.ndarray):
+        query_ground_truth['bbx'] = query_ground_truth_raw['bbx'][0][0].flatten()
+      else: 
+        query_ground_truth['bbx'] = query_ground_truth_raw['bbx'].flatten()
+      # print(query_ground_truth)
+      ground_truth.append(query_ground_truth)
 
   return query_list, index_list, ground_truth
 
